@@ -3,6 +3,7 @@
   import Button from './Button.svelte';
   import Input from './Input.svelte';
   import { CURRENCIES } from '../enums/Currency';
+  import { selectedOption } from './stores';
 
   let menuOpen = false;
   let inputValue = '';
@@ -16,6 +17,14 @@
       item.toLowerCase().match(inputValue.toLowerCase()),
     ));
   };
+
+
+ function handleSelect(event) {
+    selectedOption.set(event.detail);
+    menuOpen = false;
+ }
+
+ $: selectedItem = $selectedOption;
 </script>
 
 <section class="dropdown">
@@ -27,14 +36,16 @@
     <!-- MENU -->
     {#if filteredItems.length > 0}
       {#each filteredItems as item}
-        <Link link="{item}" />
+      <Link text="{item}" on:select="{handleSelect}" />
       {/each}
     {:else}
       {#each menuItems as item}
-        <Link link="{item}" />
+      <Link text="{item}" on:select="{handleSelect}" />
       {/each}
     {/if}
   </div>
+
+  <p>Selected Item: {selectedItem}</p>
 </section>
 
 <style>
@@ -50,7 +61,16 @@
     min-width: 230px;
     border: 1px solid #ddd;
     z-index: 1;
+    max-height: 200px; /* Adjust this value as needed */
+    /* Enable vertical scrolling */
+    overflow-y: auto;
   }
+
+  .dropdown-input {
+    position: sticky;
+    top: 0; /* Adjust this value as needed */
+    z-index: 2; /* Ensure it's above other content */
+ }
 
   /* Show the dropdown menu */
   .show {

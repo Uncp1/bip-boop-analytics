@@ -3,9 +3,10 @@
   import fetchData from '../utils/api';
   import type { CurrencyRate } from '../utils/types';
   import SearchBar from './Search-bar.svelte';
+  import { selectedOption } from './stores';
 
   let conversionRates: CurrencyRate = {};
-  let selectedCurrency = '';
+  $: selectedCurrency = $selectedOption;
   let amount = 0;
 
   onMount(async () => {
@@ -14,11 +15,14 @@
   });
   $: convertedAmount =
     selectedCurrency && conversionRates[selectedCurrency]
-      ? amount * conversionRates[selectedCurrency]
+      ? (amount * conversionRates[selectedCurrency]).toFixed(2)
       : 0;
 </script>
 
 <div>
+  <label for="currency">Currency:</label>
+  <SearchBar />
+
   <label for="currency">Currency:</label>
   <SearchBar />
 
