@@ -2,13 +2,13 @@
   export let text;
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
- 
+
   function selectOption() {
-     dispatch('select', text);
+    dispatch('select', text);
   }
- </script>
- 
- <div on:click|preventDefault="{selectOption}">{text}</div>
+</script>
+
+<div on:click|preventDefault="{selectOption}">{text}</div>
 
 <style>
   div {

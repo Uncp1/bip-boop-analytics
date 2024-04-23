@@ -1,6 +1,6 @@
 <script lang="ts">
   import CurrencyInput from './lib/Currency-input.svelte';
-import SearchBar from './lib/Search-bar.svelte';
+  import SearchBar from './lib/Search-bar.svelte';
   const buba = 'cdwecew';
 </script>
 

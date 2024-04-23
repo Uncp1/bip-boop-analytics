@@ -18,13 +18,12 @@
     ));
   };
 
-
- function handleSelect(event) {
+  function handleSelect(event) {
     selectedOption.set(event.detail);
     menuOpen = false;
- }
+  }
 
- $: selectedItem = $selectedOption;
+  $: selectedItem = $selectedOption;
 </script>
 
 <section class="dropdown">
@@ -36,11 +35,11 @@
     <!-- MENU -->
     {#if filteredItems.length > 0}
       {#each filteredItems as item}
-      <Link text="{item}" on:select="{handleSelect}" />
+        <Link text="{item}" on:select="{handleSelect}" />
       {/each}
     {:else}
       {#each menuItems as item}
-      <Link text="{item}" on:select="{handleSelect}" />
+        <Link text="{item}" on:select="{handleSelect}" />
       {/each}
     {/if}
   </div>
@@ -70,7 +69,7 @@
     position: sticky;
     top: 0; /* Adjust this value as needed */
     z-index: 2; /* Ensure it's above other content */
- }
+  }
 
   /* Show the dropdown menu */
   .show {
