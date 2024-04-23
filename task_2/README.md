@@ -1,13 +1,34 @@
-# Задание 2
+STTV - Svelte / Typescript / Tailwind / Vite Template
+=====================================================
 
-Необходимо разработать одностраничный сервис для конвертации валют. Для получения актуальной информации нужно воспользоваться открытым API, [_например этим_](https://www.exchangerate-api.com/docs/free). 
+Get up and running with Svelte, Typescript, Tailwind and Vite. Also includes testing setup using Jest.
 
-У пользователя должна быть возможность выбрать пару валют и ввести сумму конвертации. При вводе чисел должен происходить реактивный перерасчет.
+Installation
+------------
 
-Важным условием этой задачи является наличие двух полей для ввода. Пользователь может ввести в произвольное и тогда значение в другом должно поменяться.
+```
+npx degit "srmullen/sttv#main" my_app
+cd my_app
+npm install
+```
 
-Проект уже инициализирован с фреймворком Svelte, сторонние библиотеки не требуются.
+Scripts
+-------
 
-Если вы раньше не работали со Svelte, то пригодятся [_учебник_](https://learn.svelte.dev/tutorial/welcome-to-svelte) и [_документация_](https://svelte.dev/docs/introduction). Для выполнения задания понадобятся главы __Reactivity__ и __Bindings__.
+### Start a development server
 
-Визуальная составляющая остается на ваш вкус. Она не является ключевым фактором в данном задании.
+`npm run dev`
+
+### Run tests
+
+`npm run test`
+or
+`npm run test:watch`
+
+### Build the application
+
+`npm run build`
+
+### Serve the application
+
+`npm run serve`
