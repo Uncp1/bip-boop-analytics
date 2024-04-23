@@ -21,10 +21,10 @@
     border: none;
     border-bottom: 1px solid #ddd;
     position: sticky;
-    top: 0; 
-    z-index: 2; 
- }
-  
+    top: 0;
+    z-index: 2;
+  }
+
   #searchInput:focus {
     outline: 3px solid #ddd;
   }
