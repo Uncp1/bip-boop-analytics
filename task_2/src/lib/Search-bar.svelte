@@ -2,28 +2,13 @@
   import Link from './Link.svelte';
   import Button from './Button.svelte';
   import Input from './Input.svelte';
+  import { CURRENCIES } from '../enums/Currency';
 
   let menuOpen = false;
   let inputValue = '';
   $: console.log(inputValue);
 
-  const menuItems = [
-    'About',
-    'Base',
-    'Blog',
-    'Contact',
-    'Custom',
-    'Support',
-    'Tools',
-    'Boats',
-    'Cars',
-    'Bikes',
-    'Sheds',
-    'Billygoats',
-    'Zebras',
-    'Tennis Shoes',
-    'New Zealand',
-  ];
+  const menuItems = CURRENCIES;
   let filteredItems = [];
 
   const handleInput = () => {

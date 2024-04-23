@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import fetchData from '../utils/api';
   import type { CurrencyRate } from '../utils/types';
+  import SearchBar from './Search-bar.svelte';
 
   let conversionRates: CurrencyRate = {};
   let selectedCurrency = '';
@@ -19,12 +20,7 @@
 
 <div>
   <label for="currency">Currency:</label>
-  <input
-    id="currency"
-    type="text"
-    bind:value="{selectedCurrency}"
-    placeholder="Enter currency code"
-  />
+  <SearchBar />
 
   <label for="amount">Amount:</label>
   <input

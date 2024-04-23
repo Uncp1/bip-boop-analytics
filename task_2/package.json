@@ -8,7 +8,7 @@
     "test:watch": "jest --watchAll",
     "serve": "vite preview",
     "lint": "eslint --ext .ts,.svelte src",
-    "format": "prettier --write src/**/*.svelte"
+    "format": "prettier --write \"src/**/*.{svelte,ts}\""
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.4",
