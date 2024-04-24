@@ -1,3 +1,4 @@
 import { writable } from 'svelte/store';
 
-export const selectedOption = writable('');
+export const firstCurrencyOption = writable('USD');
+export const secondCurrencyOption = writable('RUB');

@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
   import Link from './Link.svelte';
   import Button from './Button.svelte';
   import Input from './Input.svelte';
   import { CURRENCIES } from '../enums/Currency';
-  import { selectedOption } from './stores';
+  import { firstCurrencyOption, secondCurrencyOption } from './stores';
+
+  export let selectedOption: 1 | 2;
 
   let menuOpen = false;
   let inputValue = '';
@@ -19,11 +21,17 @@
   };
 
   function handleSelect(event) {
-    selectedOption.set(event.detail);
+    if (selectedOption === 1) {
+      firstCurrencyOption.set(event.detail);
+    } else {
+      secondCurrencyOption.set(event.detail);
+    }
+
     menuOpen = false;
   }
 
-  $: selectedItem = $selectedOption;
+  $: selectedItem =
+    selectedOption === 1 ? $firstCurrencyOption : $secondCurrencyOption;
 </script>
 
 <section class="dropdown">
