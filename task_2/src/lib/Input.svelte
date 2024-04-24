@@ -7,7 +7,7 @@
   placeholder="Search..."
   autocomplete="off"
   id="searchInput"
-  bind:value="{inputValue}"
+  bind:value={inputValue}
   on:input
 />
 <span id="search-icon">🔍</span>

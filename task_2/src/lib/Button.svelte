@@ -1,25 +1,23 @@
-<script>
+<script lang="ts">
   export let menuOpen;
+  export let text;
 </script>
 
-<button on:click class="dropbtn"
-  >{!menuOpen ? 'Show Menu' : 'Close Menu'}</button
+<button on:click class="dropbtn bg-indigo-600"
+  >{!menuOpen ? text : 'Close Menu'}</button
 >
 
 <style>
-  /* Dropdown Button */
   .dropbtn {
-    background-color: darkblue;
+    width: 120px;
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
   }
-
-  /* Dropdown button on hover & focus */
   .dropbtn:hover,
   .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: rgb(16 185 129);
   }
 </style>

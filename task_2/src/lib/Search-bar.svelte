@@ -1,13 +1,15 @@
-<script>
+<script lang="ts">
   import Link from './Link.svelte';
   import Button from './Button.svelte';
   import Input from './Input.svelte';
   import { CURRENCIES } from '../enums/Currency';
-  import { selectedOption } from './stores';
+  import { firstCurrencyOption, secondCurrencyOption } from './stores';
+  import { beforeUpdate, onMount } from 'svelte';
+
+  export let selectedOption: 1 | 2;
 
   let menuOpen = false;
   let inputValue = '';
-  $: console.log(inputValue);
 
   const menuItems = CURRENCIES;
   let filteredItems = [];
@@ -18,33 +20,58 @@
     ));
   };
 
-  function handleSelect(event) {
-    selectedOption.set(event.detail);
+  const handleSelect =(event)=> {
+    if (selectedOption === 1) {
+      firstCurrencyOption.set(event.detail);
+    } else {
+      secondCurrencyOption.set(event.detail);
+    }
+
     menuOpen = false;
   }
 
-  $: selectedItem = $selectedOption;
+  $: selectedItem =
+    selectedOption === 1 ? $firstCurrencyOption : $secondCurrencyOption;
+
+    // Логика закрытия меню при клике вне него
+    const handleClickOutside =(event) =>{
+    if (!event.target.closest('.dropdown')) {
+      menuOpen = false;
+    }
+  }
+
+  onMount(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
+
+  const handleButtonClick =()=> {
+    menuOpen = !menuOpen;
+  }
+    
 </script>
 
 <section class="dropdown">
-  <Button on:click="{() => (menuOpen = !menuOpen)}" menuOpen="{menuOpen}" />
-  <div class="dropdown-content">pcdvcwd</div>
-
-  <div id="myDropdown" class:show="{menuOpen}" class="dropdown-content">
-    <Input bind:inputValue="{inputValue}" on:input="{handleInput}" />
+  <Button
+    text={selectedItem}
+    on:click={handleButtonClick}
+    {menuOpen}
+  />
+  <div id="myDropdown" class:show={menuOpen} class="dropdown-content">
+    <Input bind:inputValue on:input={handleInput} />
     <!-- MENU -->
     {#if filteredItems.length > 0}
       {#each filteredItems as item}
-        <Link text="{item}" on:select="{handleSelect}" />
+        <Link text={item} on:select={handleSelect} />
       {/each}
     {:else}
       {#each menuItems as item}
-        <Link text="{item}" on:select="{handleSelect}" />
+        <Link text={item} on:select={handleSelect} />
       {/each}
     {/if}
   </div>
-
-  <p>Selected Item: {selectedItem}</p>
 </section>
 
 <style>
@@ -57,21 +84,12 @@
     display: none;
     position: absolute;
     background-color: #f6f6f6;
-    min-width: 230px;
+    width: 180px;
     border: 1px solid #ddd;
     z-index: 1;
-    max-height: 200px; /* Adjust this value as needed */
-    /* Enable vertical scrolling */
+    max-height: 200px;
     overflow-y: auto;
   }
-
-  .dropdown-input {
-    position: sticky;
-    top: 0; /* Adjust this value as needed */
-    z-index: 2; /* Ensure it's above other content */
-  }
-
-  /* Show the dropdown menu */
   .show {
     display: block;
   }
