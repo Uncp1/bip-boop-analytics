@@ -4,12 +4,12 @@
   import Input from './Input.svelte';
   import { CURRENCIES } from '../enums/Currency';
   import { firstCurrencyOption, secondCurrencyOption } from './stores';
+  import { beforeUpdate, onMount } from 'svelte';
 
   export let selectedOption: 1 | 2;
 
   let menuOpen = false;
   let inputValue = '';
-  $: console.log(inputValue);
 
   const menuItems = CURRENCIES;
   let filteredItems = [];
@@ -20,7 +20,7 @@
     ));
   };
 
-  function handleSelect(event) {
+  const handleSelect =(event)=> {
     if (selectedOption === 1) {
       firstCurrencyOption.set(event.detail);
     } else {
@@ -32,12 +32,31 @@
 
   $: selectedItem =
     selectedOption === 1 ? $firstCurrencyOption : $secondCurrencyOption;
+
+    // Логика закрытия меню при клике вне него
+    const handleClickOutside =(event) =>{
+    if (!event.target.closest('.dropdown')) {
+      menuOpen = false;
+    }
+  }
+
+  onMount(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
+
+  const handleButtonClick =()=> {
+    menuOpen = !menuOpen;
+  }
+    
 </script>
 
 <section class="dropdown">
   <Button
     text={selectedItem}
-    on:click={() => (menuOpen = !menuOpen)}
+    on:click={handleButtonClick}
     {menuOpen}
   />
   <div id="myDropdown" class:show={menuOpen} class="dropdown-content">

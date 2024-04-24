@@ -32,33 +32,41 @@
     firstCurrencyOption.set($secondCurrencyOption);
     secondCurrencyOption.set(swap);
   };
+
+  const limitInputLength = (event) => {
+    const target = event.target as HTMLInputElement;
+    if (target.value.length > 12) {
+      target.value = target.value.slice(0, 12);
+    }
+  }
 </script>
 
 <section>
   <div class="input-container">
-    <label for="currency">У меня есть</label>
+    <h2 >У меня есть</h2>
     <SearchBar selectedOption={1} />
-    <label for="amount">Amount:</label>
+    <label for="amount">Сумма:</label>
     <input
       id="amount"
       type="number"
       bind:value={amount}
-      placeholder="Enter amount"
+      on:input={limitInputLength}
     />
   </div>
 
   <button on:click={handleSwap}>
     <img src={SwapIcon} alt="Click me" />
-    click me</button
+    </button
   >
 
   <div class="input-container">
-    <label for="currency"> Хочу приобрести</label>
+    <h2>Хочу приобрести</h2>
     <SearchBar selectedOption={2} />
 
-    {#if secondCurrencyOption && conversionRates[$secondCurrencyOption]}
-      <p>Converted Amount: {convertedAmount}</p>
-    {/if}
+
+      <p>Конвертированная сумма: </p>
+      <p>{convertedAmount}</p>
+ 
   </div>
 </section>
 
@@ -79,6 +87,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    width: 240px;
   }
 
   @media (max-width: 540px) {
