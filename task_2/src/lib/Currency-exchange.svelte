@@ -2,12 +2,12 @@
   import { onMount } from 'svelte';
   import fetchData from '../utils/api';
   import type { CurrencyRate } from '../utils/types';
-  import SearchBar from './Search-bar.svelte';
+  import CurrencyInput from './Currency-input.svelte';
   import { firstCurrencyOption, secondCurrencyOption } from './stores';
   import SwapIcon from '../../public/arrows.svg';
 
   let conversionRates: CurrencyRate = {};
-  let amount = 0;
+  let amount = 1;
 
   const fetchConversionRates = async (currency: string) => {
     conversionRates = await fetchData(currency);
@@ -38,13 +38,13 @@
     if (target.value.length > 12) {
       target.value = target.value.slice(0, 12);
     }
-  }
+  };
 </script>
 
 <section>
   <div class="input-container">
-    <h2 >У меня есть</h2>
-    <SearchBar selectedOption={1} />
+    <h2>У меня есть</h2>
+    <CurrencyInput selectedOption={1} />
     <label for="amount">Сумма:</label>
     <input
       id="amount"
@@ -56,17 +56,14 @@
 
   <button on:click={handleSwap}>
     <img src={SwapIcon} alt="Click me" />
-    </button
-  >
+  </button>
 
   <div class="input-container">
     <h2>Хочу приобрести</h2>
-    <SearchBar selectedOption={2} />
+    <CurrencyInput selectedOption={2} />
 
-
-      <p>Конвертированная сумма: </p>
-      <p>{convertedAmount}</p>
- 
+    <p>Конвертированная сумма:</p>
+    <p>{convertedAmount}</p>
   </div>
 </section>
 

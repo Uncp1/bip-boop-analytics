@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Link from './Link.svelte';
+  import { onMount } from 'svelte';
+  import CurrencyItem from './Currency-item.svelte';
   import Button from './Button.svelte';
-  import Input from './Input.svelte';
+  import Search from './Search.svelte';
   import { CURRENCIES } from '../enums/Currency';
   import { firstCurrencyOption, secondCurrencyOption } from './stores';
-  import { beforeUpdate, onMount } from 'svelte';
 
   export let selectedOption: 1 | 2;
 
@@ -20,7 +20,7 @@
     ));
   };
 
-  const handleSelect =(event)=> {
+  const handleSelect = (event) => {
     if (selectedOption === 1) {
       firstCurrencyOption.set(event.detail);
     } else {
@@ -28,17 +28,17 @@
     }
 
     menuOpen = false;
-  }
+  };
 
   $: selectedItem =
     selectedOption === 1 ? $firstCurrencyOption : $secondCurrencyOption;
 
-    // Логика закрытия меню при клике вне него
-    const handleClickOutside =(event) =>{
+  // Логика закрытия меню при клике вне него
+  const handleClickOutside = (event) => {
     if (!event.target.closest('.dropdown')) {
       menuOpen = false;
     }
-  }
+  };
 
   onMount(() => {
     document.addEventListener('click', handleClickOutside);
@@ -47,28 +47,23 @@
     };
   });
 
-  const handleButtonClick =()=> {
+  const handleButtonClick = () => {
     menuOpen = !menuOpen;
-  }
-    
+  };
 </script>
 
 <section class="dropdown">
-  <Button
-    text={selectedItem}
-    on:click={handleButtonClick}
-    {menuOpen}
-  />
+  <Button text={selectedItem} on:click={handleButtonClick} {menuOpen} />
   <div id="myDropdown" class:show={menuOpen} class="dropdown-content">
-    <Input bind:inputValue on:input={handleInput} />
+    <Search bind:inputValue on:input={handleInput} />
     <!-- MENU -->
     {#if filteredItems.length > 0}
       {#each filteredItems as item}
-        <Link text={item} on:select={handleSelect} />
+        <CurrencyItem text={item} on:select={handleSelect} />
       {/each}
     {:else}
       {#each menuItems as item}
-        <Link text={item} on:select={handleSelect} />
+        <CurrencyItem text={item} on:select={handleSelect} />
       {/each}
     {/if}
   </div>

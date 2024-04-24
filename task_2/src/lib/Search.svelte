@@ -13,7 +13,6 @@
 <span id="search-icon">🔍</span>
 
 <style>
-  /* The search field */
   #searchInput {
     box-sizing: border-box;
     font-size: 1.2rem;

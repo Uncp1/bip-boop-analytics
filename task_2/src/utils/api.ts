@@ -1,4 +1,4 @@
-import type { ApiResponse, CurrencyRate } from './types';
+import type { CurrencyRate } from './types';
 
 async function fetchData(currency: string): Promise<CurrencyRate> {
   try {

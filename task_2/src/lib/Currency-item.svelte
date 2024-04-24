@@ -6,9 +6,17 @@
   function selectOption() {
     dispatch('select', text);
   }
+
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      selectOption();
+    }
+  }
 </script>
 
-<div on:click|preventDefault={selectOption}>{text}</div>
+<div on:click|preventDefault={selectOption} on:keydown={handleKeyDown}>
+  {text}
+</div>
 
 <style>
   div {

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import CurrencyInput from './lib/Currency-exchange.svelte';
-  import SearchBar from './lib/Search-bar.svelte';
+  import CurrencyExchange from './lib/Currency-exchange.svelte';
 </script>
 
 <body>
@@ -8,7 +7,7 @@
     <h1 class="text-4xl">Курс валют</h1>
   </header>
   <main class="mx-0 h-screen bg-slate-200 p-4 pt-8 text-center">
-    <CurrencyInput />
+    <CurrencyExchange />
   </main>
 </body>
 
