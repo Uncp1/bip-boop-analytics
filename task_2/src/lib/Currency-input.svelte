@@ -25,23 +25,51 @@
     $secondCurrencyOption && conversionRates[$secondCurrencyOption]
       ? (amount * conversionRates[$secondCurrencyOption]).toFixed(2)
       : 0;
+
+  const handleSwap = () => {
+    const swap = $firstCurrencyOption;
+    firstCurrencyOption.set($secondCurrencyOption);
+    secondCurrencyOption.set(swap);
+  };
 </script>
 
-<div>
-  <label for="currency">Currency:</label>
-  <SearchBar selectedOption="{1}" />
+<section>
+  <div class="input-container">
+    <label for="currency">У меня есть</label>
+    <SearchBar selectedOption="{1}" />
+    <label for="amount">Amount:</label>
+    <input
+      id="amount"
+      type="number"
+      bind:value="{amount}"
+      placeholder="Enter amount"
+    />
+  </div>
 
-  <label for="currency">Currency:</label>
-  <SearchBar selectedOption="{2}" />
+  <button on:click="{handleSwap}">click me</button>
 
-  <label for="amount">Amount:</label>
-  <input
-    id="amount"
-    type="number"
-    bind:value="{amount}"
-    placeholder="Enter amount"
-  />
-  {#if secondCurrencyOption && conversionRates[$secondCurrencyOption]}
-    <p>Converted Amount: {convertedAmount}</p>
-  {/if}
-</div>
+  <div class="input-container">
+    <label for="currency"> Хочу приобрести</label>
+    <SearchBar selectedOption="{2}" />
+
+    {#if secondCurrencyOption && conversionRates[$secondCurrencyOption]}
+      <p>Converted Amount: {convertedAmount}</p>
+    {/if}
+  </div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+</style>

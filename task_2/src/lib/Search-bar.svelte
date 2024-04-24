@@ -35,9 +35,11 @@
 </script>
 
 <section class="dropdown">
-  <Button on:click="{() => (menuOpen = !menuOpen)}" menuOpen="{menuOpen}" />
-  <div class="dropdown-content">pcdvcwd</div>
-
+  <Button
+    text="{selectedItem}"
+    on:click="{() => (menuOpen = !menuOpen)}"
+    menuOpen="{menuOpen}"
+  />
   <div id="myDropdown" class:show="{menuOpen}" class="dropdown-content">
     <Input bind:inputValue="{inputValue}" on:input="{handleInput}" />
     <!-- MENU -->
@@ -51,8 +53,6 @@
       {/each}
     {/if}
   </div>
-
-  <p>Selected Item: {selectedItem}</p>
 </section>
 
 <style>
@@ -65,21 +65,12 @@
     display: none;
     position: absolute;
     background-color: #f6f6f6;
-    min-width: 230px;
+    width: 180px;
     border: 1px solid #ddd;
     z-index: 1;
-    max-height: 200px; /* Adjust this value as needed */
-    /* Enable vertical scrolling */
+    max-height: 200px;
     overflow-y: auto;
   }
-
-  .dropdown-input {
-    position: sticky;
-    top: 0; /* Adjust this value as needed */
-    z-index: 2; /* Ensure it's above other content */
-  }
-
-  /* Show the dropdown menu */
   .show {
     display: block;
   }
