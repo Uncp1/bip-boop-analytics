@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CurrencyInput from './lib/Currency-input.svelte';
+  import CurrencyInput from './lib/Currency-exchange.svelte';
   import SearchBar from './lib/Search-bar.svelte';
 </script>
 

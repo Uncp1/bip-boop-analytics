@@ -36,20 +36,20 @@
 
 <section class="dropdown">
   <Button
-    text="{selectedItem}"
-    on:click="{() => (menuOpen = !menuOpen)}"
-    menuOpen="{menuOpen}"
+    text={selectedItem}
+    on:click={() => (menuOpen = !menuOpen)}
+    {menuOpen}
   />
-  <div id="myDropdown" class:show="{menuOpen}" class="dropdown-content">
-    <Input bind:inputValue="{inputValue}" on:input="{handleInput}" />
+  <div id="myDropdown" class:show={menuOpen} class="dropdown-content">
+    <Input bind:inputValue on:input={handleInput} />
     <!-- MENU -->
     {#if filteredItems.length > 0}
       {#each filteredItems as item}
-        <Link text="{item}" on:select="{handleSelect}" />
+        <Link text={item} on:select={handleSelect} />
       {/each}
     {:else}
       {#each menuItems as item}
-        <Link text="{item}" on:select="{handleSelect}" />
+        <Link text={item} on:select={handleSelect} />
       {/each}
     {/if}
   </div>

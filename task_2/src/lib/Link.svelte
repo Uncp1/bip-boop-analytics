@@ -8,7 +8,7 @@
   }
 </script>
 
-<div on:click|preventDefault="{selectOption}">{text}</div>
+<div on:click|preventDefault={selectOption}>{text}</div>
 
 <style>
   div {

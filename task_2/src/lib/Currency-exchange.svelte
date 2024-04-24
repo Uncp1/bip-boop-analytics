@@ -4,6 +4,7 @@
   import type { CurrencyRate } from '../utils/types';
   import SearchBar from './Search-bar.svelte';
   import { firstCurrencyOption, secondCurrencyOption } from './stores';
+  import SwapIcon from '../../public/arrows.svg';
 
   let conversionRates: CurrencyRate = {};
   let amount = 0;
@@ -36,21 +37,24 @@
 <section>
   <div class="input-container">
     <label for="currency">У меня есть</label>
-    <SearchBar selectedOption="{1}" />
+    <SearchBar selectedOption={1} />
     <label for="amount">Amount:</label>
     <input
       id="amount"
       type="number"
-      bind:value="{amount}"
+      bind:value={amount}
       placeholder="Enter amount"
     />
   </div>
 
-  <button on:click="{handleSwap}">click me</button>
+  <button on:click={handleSwap}>
+    <img src={SwapIcon} alt="Click me" />
+    click me</button
+  >
 
   <div class="input-container">
     <label for="currency"> Хочу приобрести</label>
-    <SearchBar selectedOption="{2}" />
+    <SearchBar selectedOption={2} />
 
     {#if secondCurrencyOption && conversionRates[$secondCurrencyOption]}
       <p>Converted Amount: {convertedAmount}</p>
@@ -64,12 +68,23 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    gap: 12px;
   }
 
+  button {
+    max-width: 60px;
+  }
   .input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  @media (max-width: 540px) {
+    section {
+      flex-direction: column;
+      gap: 24px;
+    }
   }
 </style>

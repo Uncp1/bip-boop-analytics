@@ -10,8 +10,8 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "svelteSortOrder": "options-scripts-markup-styles",
-  "svelteStrictMode": true,
-  "svelteAllowShorthand": false,
+  "svelteStrictMode": false,
+  "svelteAllowShorthand": true,
   "svelteBracketNewLine": true,
   "svelteIndentScriptAndStyle": true,
   "tailwindConfig": "./tailwind.config.js",
@@ -19,12 +19,11 @@
   "tailwindFunctions": ["classNames", "classnames", "twMerge"],
   "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
   "overrides": [
-     {
-       "files": "*.svelte",
-       "options": {
-         "parser": "svelte"
-       }
-     }
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
   ]
- }
- 
+}
