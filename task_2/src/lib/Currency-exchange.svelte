@@ -92,5 +92,9 @@
       flex-direction: column;
       gap: 24px;
     }
+
+    button {
+    transform: rotate(90deg);
+ }
   }
 </style>
